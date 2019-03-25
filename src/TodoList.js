@@ -2,8 +2,9 @@ import React, { Component }  from 'react';
 import 'antd/dist/antd.css';
 import './App.css';
 import store from './store';
-import { getInputChangeAction, getAddItemAction, deleteItemAction } from './store/actionCreators'
+import { getInputChangeAction, getAddItemAction, deleteItemAction, getTodoList } from './store/actionCreators'
 import TodoListUI from './TodoListUI'
+
 
 class TodoList extends Component{
     constructor(props){
@@ -14,6 +15,10 @@ class TodoList extends Component{
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handleItemClick = this.handleItemClick.bind(this)
         store.subscribe(this.handleStoreChange);
+    }
+    componentDidMount(){
+        const action = getTodoList();
+        store.dispatch(action);
     }
     render (){
         return (
