@@ -16,10 +16,11 @@ class TodoList extends Component{
     componentDidMount(){
         // 获取ajax数据, 应该放在这里
         // 在组件被挂载到页面的时候,只会被执行一次,以后都不被会执行
-        axios.get('/api/get/users').then(()=>{
-            alert('success');
+        axios.get('/api/todolist').then((res)=>{
+            this.setState(()=>({
+                list: [...res.data]
+            }))
         }).catch(()=>{
-            alert('failed');
         })
     }
     handleInputChange = () =>{
