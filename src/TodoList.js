@@ -1,5 +1,6 @@
-import React, { Component }  from 'react';
+import React, { Component, Fragment }  from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 import './App.css';
 class TodoList extends Component{
     constructor(props){
@@ -11,6 +12,15 @@ class TodoList extends Component{
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handleItemDelete = this.handleItemDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+    }
+    componentDidMount(){
+        // 获取ajax数据, 应该放在这里
+        // 在组件被挂载到页面的时候,只会被执行一次,以后都不被会执行
+        axios.get('/api/get/users').then(()=>{
+            alert('success');
+        }).catch(()=>{
+            alert('failed');
+        })
     }
     handleInputChange = () =>{
         // e.target.value
