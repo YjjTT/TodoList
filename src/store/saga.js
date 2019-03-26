@@ -1,3 +1,4 @@
+
 import { takeEvery, put } from 'redux-saga/effects'
 import { GET_INIT_LIST } from './actionTypes';
 import { initListAction } from './actionCreators'
@@ -7,7 +8,7 @@ function* getInitList() {
     try{
         const res = yield axios.get('/todolist.json');
         const action = initListAction(res.data);
-        put(action);
+        yield put(action);
     }catch(e){
         console.log('list.json 网络请求失败')
     }
